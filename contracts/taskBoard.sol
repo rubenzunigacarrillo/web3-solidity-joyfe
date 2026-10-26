@@ -18,7 +18,9 @@
 pragma solidity ^0.8.0; // Compiler version
 
 contract TaskBoard {
-    address public owner;
+    address public immutable owner;
+    bool public paused;
+
     // enum State { Pending, InProgress, Completed } // Could be implemented...
     struct Task {
         string  description;   // qué hay que hacer
@@ -26,6 +28,7 @@ contract TaskBoard {
         address created_by;    // quién la publicó
         uint256 reward;        // en wei (puede ser 0)
         address completed_by;  // quién la completó (address(0) si nadie aún)
+        bool canceled;
     }
 
 
@@ -36,6 +39,36 @@ contract TaskBoard {
    
     constructor() {
         owner = msg.sender;
+    }
+
+    // Custom errors:
+    error InvalidIndex(uint256 index);
+    error YouArentTheCreator();
+    error UnavailableTask(); // When completed or canceled
+    error NoReward();
+
+    // Events:
+    event TaskCompleted(uint256 indexed id, address indexed completedBy, uint256 reward);
+    event TaskCanceled(uint256 indexed id, address indexed createdBy, uint256 returnedReward);
+    event PausedContract(bool paused);
+
+
+    // Modifiers:
+    modifier isOwner(){
+        require(msg.sender == owner, "Only the owner can execute this");
+        _;
+    }
+    modifier validIndex(uint256 _i){
+        if(!_valid(_i)) revert InvalidIndex(_i);
+        _;
+    }
+    modifier onlyCreator(uint256 _i){
+        if(msg.sender != getTask(_i).created_by) revert YouArentTheCreator();
+        _;
+    }
+    modifier notPaused(){
+        require(paused, "The contract is currently paused");
+        _;
     }
 
 
@@ -50,6 +83,7 @@ contract TaskBoard {
                 , created_by: msg.sender
                 , reward: msg.value
                 , completed_by: address(0)
+                , canceled: false
             })
         );
         if(msg.value > 0) {
