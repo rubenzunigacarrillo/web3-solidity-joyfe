@@ -103,6 +103,19 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
+						"name": "_i",
+						"type": "uint256"
+					}
+				],
+				"name": "cancelTask",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
 						"name": "_index",
 						"type": "uint256"
 					}
@@ -268,6 +281,13 @@
 			},
 			{
 				"inputs": [],
+				"name": "pause",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "paused",
 				"outputs": [
 					{
@@ -277,6 +297,13 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "resume",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -340,11 +367,11 @@
 	},
 	"sources": {
 		"contracts/taskBoard.sol": {
-			"keccak256": "0x813652f1db878817adbddb671a568c1088c6096742a8b89b6259f26b99f48848",
+			"keccak256": "0x4608ef7d2abc8cd3a53ab56c309a1bb17b36374cb5e22b5e246ba2302ff4f2e7",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://f59204ddc97b106cbe6afe8b59f7d605cc74d9dfa8a375c96dec9f972ed10d7e",
-				"dweb:/ipfs/Qmdk9tVVCK2wA1fAxiXMd6iFUwbC2hDss4Nw61JpmRUMp9"
+				"bzz-raw://43b200f7742b8004abe2f43b367915ed4c07dbdb3de6c4e52f6c296aec6b9177",
+				"dweb:/ipfs/QmU35vL7mSDZgAkKQddz3BzXvMCJyLbYLGdAbFD6nRbJKp"
 			]
 		}
 	},

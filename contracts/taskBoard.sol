@@ -71,6 +71,23 @@ contract TaskBoard {
         _;
     }
 
+    function pause() public {
+        paused = true;
+        emit PausedContract(paused);
+    }
+    function resume() public {
+        paused = false;
+        emit PausedContract(paused);
+    }
+    /*removed modifier validIndex(_i): in my case, it doesn't make sense to add this validation because the onlyCreator validates the task existence*/
+    function cancelTask(uint256 _i) public onlyCreator(_i) { 
+        // TODO
+        // getTask(_i);
+    }
+    // cancelarTarea(uint256 _i) public indiceValido(_i), soloCreador(_i)
+
+
+
 
     // (crearTarea) Crea una tarea nueva: completada = false, creador = msg.sender, recompensa = msg.value, completadaPor = address(0).
     // La añade al array y guarda su índice en tareasPorCreador[msg.sender].
