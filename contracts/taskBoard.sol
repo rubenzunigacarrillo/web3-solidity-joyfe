@@ -80,9 +80,8 @@ contract TaskBoard {
         emit PausedContract(paused);
     }
     /*removed modifier validIndex(_i): in my case, it doesn't make sense to add this validation because the onlyCreator validates the task existence*/
-    function cancelTask(uint256 _i) public onlyCreator(_i) { 
-        // TODO
-        // getTask(_i);
+    function cancelTask(uint256 _index) public onlyCreator(_index) { 
+        taskList[_index].canceled = true;
     }
     // cancelarTarea(uint256 _i) public indiceValido(_i), soloCreador(_i)
 

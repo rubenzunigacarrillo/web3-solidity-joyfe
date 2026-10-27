@@ -103,7 +103,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "_i",
+						"name": "_index",
 						"type": "uint256"
 					}
 				],
@@ -367,11 +367,11 @@
 	},
 	"sources": {
 		"contracts/taskBoard.sol": {
-			"keccak256": "0x4608ef7d2abc8cd3a53ab56c309a1bb17b36374cb5e22b5e246ba2302ff4f2e7",
+			"keccak256": "0xf0537b58dae1582f7a7a4d302fa2e7c4144b1bc0039d1a76bfbdf883837fe7af",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://43b200f7742b8004abe2f43b367915ed4c07dbdb3de6c4e52f6c296aec6b9177",
-				"dweb:/ipfs/QmU35vL7mSDZgAkKQddz3BzXvMCJyLbYLGdAbFD6nRbJKp"
+				"bzz-raw://a5153fcdbf3e7f8267d1db7342c51617822a1d0b70ecb338c92011a817321ce8",
+				"dweb:/ipfs/QmU3U3BXYJFW7uTDBbi1SEwTeusSZQa6LFYKbbrfuKtCPv"
 			]
 		}
 	},
