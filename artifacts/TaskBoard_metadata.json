@@ -367,11 +367,11 @@
 	},
 	"sources": {
 		"contracts/taskBoard.sol": {
-			"keccak256": "0xf0537b58dae1582f7a7a4d302fa2e7c4144b1bc0039d1a76bfbdf883837fe7af",
+			"keccak256": "0x9231b57fb546855f3664abb36b2add9f4eeb318b15d641ca98a8ef097a70f1eb",
 			"license": "UNLICENSED",
 			"urls": [
-				"bzz-raw://a5153fcdbf3e7f8267d1db7342c51617822a1d0b70ecb338c92011a817321ce8",
-				"dweb:/ipfs/QmU3U3BXYJFW7uTDBbi1SEwTeusSZQa6LFYKbbrfuKtCPv"
+				"bzz-raw://6915e3bfca3007ee21cf8b5fb2e3ff23dc1b0f8634d8a30d5d7617be939ae291",
+				"dweb:/ipfs/QmPaYJWggYuqzjvqTqMUmbM4qagMTN8atcEKrueTTAuDFW"
 			]
 		}
 	},

@@ -54,43 +54,42 @@ contract TaskBoard {
 
 
     // Modifiers:
-    modifier isOwner(){
+    modifier onlyOwner(){
         require(msg.sender == owner, "Only the owner can execute this");
         _;
     }
-    modifier validIndex(uint256 _i){
-        if(!_valid(_i)) revert InvalidIndex(_i);
+    modifier validIndex(uint256 _index){
+        if(taskList.length < _index) revert InvalidIndex(_index);
         _;
     }
-    modifier onlyCreator(uint256 _i){
-        if(msg.sender != getTask(_i).created_by) revert YouArentTheCreator();
+    modifier onlyCreator(uint256 _index){
+        if(msg.sender != getTask(_index).created_by) revert YouArentTheCreator();
         _;
     }
     modifier notPaused(){
-        require(paused, "The contract is currently paused");
+        require(!paused, "The contract is currently paused");
         _;
     }
-
-    function pause() public {
+    // (pausar)
+    function pause() public onlyOwner {
         paused = true;
         emit PausedContract(paused);
     }
-    function resume() public {
+    // (reanudar)
+    function resume() public onlyOwner {
         paused = false;
         emit PausedContract(paused);
     }
-    /*removed modifier validIndex(_i): in my case, it doesn't make sense to add this validation because the onlyCreator validates the task existence*/
+
+    // cancelarTarea(uint256 _i) public indiceValido(_i), soloCreador(_i)
+    // removed modifier indiceValido [validIndex(_i)]: in my case, it doesn't make sense to add this validation because the onlyCreator validates the task existence
     function cancelTask(uint256 _index) public onlyCreator(_index) { 
         taskList[_index].canceled = true;
     }
-    // cancelarTarea(uint256 _i) public indiceValido(_i), soloCreador(_i)
-
-
-
 
     // (crearTarea) Crea una tarea nueva: completada = false, creador = msg.sender, recompensa = msg.value, completadaPor = address(0).
     // La añade al array y guarda su índice en tareasPorCreador[msg.sender].
-    function createTask(string memory _description) public payable {
+    function createTask(string memory _description) public payable notPaused {
         require(bytes(_description).length > 0, "Description is requierd.");
         taskList.push(
             Task({
@@ -103,29 +102,30 @@ contract TaskBoard {
             })
         );
         if(msg.value > 0) {
-           totalRewards += msg.value;
+            rewardsPerAddress[msg.sender] += msg.value;
+            totalRewards += msg.value;
         }
         taskIndexPerCreator[msg.sender].push(taskList.length-1);
     }
     // (completar) Valida el índice con require (usando _valido). Marca la tarea como completada, guarda quién la completó.
     // Si tiene recompensa > 0, envía ese ether a quien completa y suma la cantidad en recompensaGanada. No se puede completar dos veces.
-    function complete(uint256 _index) public {
-        require(_valid(_index), "Task index doesn't exist.");
-        require(taskList[_index].completed == false, "Task is already completed");
+    function complete(uint256 _index) public validIndex(_index) notPaused {
+        // require(taskList[_index].completed == false, "Task is already completed");
+        if (taskList[_index].completed || taskList[_index].canceled) revert UnavailableTask();
 
 
-        taskList[_index].completed == true;
-        taskList[_index].completed_by == msg.sender;
+        taskList[_index].completed = true;
+        taskList[_index].completed_by = msg.sender;
         if(taskList[_index].reward > 0) {
+            totalRewards -= taskList[_index].reward;
+            rewardsPerAddress[taskList[_index].created_by] -= taskList[_index].reward;
             (bool success, ) = payable(msg.sender).call{value: taskList[_index].reward}("");
             require(success, "Reward couldn't be transfered.");
-            rewardsPerAddress[taskList[_index].created_by] -= taskList[_index].reward;
-            totalRewards -= taskList[_index].reward;
         }
+        emit TaskCompleted(_index, msg.sender, taskList[_index].reward);
     }
     // (verTarea) Devuelve los 5 campos de la tarea: descripción, completada, creador, recompensa, completadaPor.
-    function getTask(uint256 _index) public view returns(Task memory){
-        require(_valid(_index), "Task Index doesn't exist.");
+    function getTask(uint256 _index) public view validIndex(_index) returns(Task memory) {
         return taskList[_index];
     }
     // (totalTareas) Devuelve cuántas tareas hay en total.
@@ -179,12 +179,5 @@ contract TaskBoard {
         */
         return totalRewards; // Used other approach to reduce gas
     }
-
-
-    // (_valido) Devuelve true si el índice existe (< tareas.length). Úsala dentro de completar y verTarea.
-    function _valid(uint256 _index) private view returns(bool){
-        return _index < taskList.length;
-    }
-
 
 }
