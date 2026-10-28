@@ -85,6 +85,13 @@ contract TaskBoard {
     // removed modifier indiceValido [validIndex(_i)]: in my case, it doesn't make sense to add this validation because the onlyCreator validates the task existence
     function cancelTask(uint256 _index) public onlyCreator(_index) { 
         taskList[_index].canceled = true;
+        if(taskList[_index].reward > 0) {
+            totalRewards -= taskList[_index].reward;
+            rewardsPerAddress[taskList[_index].created_by] -= taskList[_index].reward;
+            (bool success, ) = payable(taskList[_index].created_by).call{value: taskList[_index].reward}("");
+            require(success, "Reward couldn't be returned.");
+        }
+        emit TaskCanceled(_index, taskList[_index].created_by, taskList[_index].reward);
     }
 
     // (crearTarea) Crea una tarea nueva: completada = false, creador = msg.sender, recompensa = msg.value, completadaPor = address(0).
