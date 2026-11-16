@@ -30,5 +30,13 @@
         "file": "contracts/taskBoard.sol"
       }
     }
+  },
+  "contracts/Donations.sol": {
+    "__sources__": {
+      "contracts/Donations.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.19;\r\n\r\ncontract ContratoDonaciones {\r\n    address public organizacionBeneficiaria;\r\n    // uint256 public totalDonado;\r\n    event DonacionRecibida(address indexed donante, uint256 donacion);\r\n    event FondosRetirados(uint256 donacion);\r\n\r\n    constructor(address _organizacion) {\r\n        organizacionBeneficiaria = _organizacion;\r\n    }\r\n\r\n    receive() external payable {\r\n        emit DonacionRecibida(msg.sender, msg.value);\r\n    }\r\n\r\n    function hacerDonacion() public payable {\r\n        require(msg.value > 0, \"La donacion debe ser mayor que cero\");\r\n        emit DonacionRecibida(msg.sender, msg.value);\r\n    }\r\n\r\n    function retirarFondos() public {\r\n        require(msg.sender == organizacionBeneficiaria, \"Solo la organizacion puede retirar fondos\");\r\n        // Realiza la transferencia de fondos a la organización\r\n        // payable(organizacionBeneficiaria).transfer(address(this).balance); // DEPRECATED\r\n        // TODO: retirar fondos\r\n        emit FondosRetirados(address(this).balance);\r\n    }\r\n\r\n}",
+        "file": "contracts/Donations.sol"
+      }
+    }
   }
 }
