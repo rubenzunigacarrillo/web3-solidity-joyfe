@@ -18,7 +18,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "divide",
+				"name": "dividir",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -42,7 +42,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "multiply",
+				"name": "modulo",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -66,7 +66,31 @@
 						"type": "uint256"
 					}
 				],
-				"name": "substract",
+				"name": "multiplicar",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "base",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "exponente",
+						"type": "uint256"
+					}
+				],
+				"name": "potencia",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -90,7 +114,31 @@
 						"type": "uint256"
 					}
 				],
-				"name": "sum",
+				"name": "restar",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "a",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "b",
+						"type": "uint256"
+					}
+				],
+				"name": "sumar",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -103,8 +151,10 @@
 			}
 		],
 		"devdoc": {
+			"details": "Smart contract que realiza operaciones matemáticas básicas sin almacenar estado. Todas las funciones son 'pure' para garantizar que no leen ni modifican la blockchain.",
 			"kind": "dev",
 			"methods": {},
+			"title": "CalculadoraSinEstado",
 			"version": 1
 		},
 		"userdoc": {
@@ -115,7 +165,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/calculadora.sol": "Calculadora"
+			"contracts/calculadora1.sol": "Calculadora"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -129,12 +179,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/calculadora.sol": {
-			"keccak256": "0x6a72d48879718e14bb65ce97fb21377abf7fd45c2717404f9984aa776684200a",
-			"license": "UNLICENSED",
+		"contracts/calculadora1.sol": {
+			"keccak256": "0x683cb2a63d749a4da2740d53ee7c10b50451f85e8d99e6df7cf6e0ce75ea936f",
+			"license": "MIT",
 			"urls": [
-				"bzz-raw://57569299da83d9cb964cb0e111f729cb7543be01e2da4df0e5f85dacfde857f9",
-				"dweb:/ipfs/Qmcx6tYBcRfSF9Gt6XEeahmqjTYsZdg1FS86wHtJT3FyhY"
+				"bzz-raw://fb6f582ca074f037cb770481c9ce04215ba20812a6be5d929612b6e847b7196a",
+				"dweb:/ipfs/QmeaUyaAocaHJY21iP5AJhBw6pJqfQ5uL2zPZumMhB7hus"
 			]
 		}
 	},

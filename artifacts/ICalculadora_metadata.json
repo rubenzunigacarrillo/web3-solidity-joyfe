@@ -1,0 +1,72 @@
+{
+	"compiler": {
+		"version": "0.8.34+commit.80d5c536"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "a",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "b",
+						"type": "uint256"
+					}
+				],
+				"name": "sumar",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Interfaz para interactuar con el contrato Calculadora desde otros smart contracts.",
+			"kind": "dev",
+			"methods": {},
+			"title": "ICalculadora",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/contracts-interaction/ICalculadora.sol": "ICalculadora"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/contracts-interaction/ICalculadora.sol": {
+			"keccak256": "0x065ed862e7c7613f7c2a0732372442abc34987203b905bd50cf5fa2c63532af6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://85e1331845130ab57280d23ea106aa7bef6df5c22ddaa1df3e312b05ed7ab555",
+				"dweb:/ipfs/QmVJ2uaWSHXYW5vArwVAorVK4iD8YDFd9iqmuUcBwQFvN3"
+			]
+		}
+	},
+	"version": 1
+}

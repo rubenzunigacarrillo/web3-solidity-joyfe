@@ -1,0 +1,83 @@
+{
+	"compiler": {
+		"version": "0.8.34+commit.80d5c536"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "direccionCalculadora",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "x",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "y",
+						"type": "uint256"
+					}
+				],
+				"name": "calcularTotal",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/contracts-interaction/ClienteCalculadora.sol": "ClienteCalculadora"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/contracts-interaction/ClienteCalculadora.sol": {
+			"keccak256": "0x2bd507a79b7ab0682784b78979aff1efe63c5fb0b9adbb770bb48e229fb89203",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7930d757040ed52e9d8a1fe1de26d29e029bcac9e52a058b7d4c2219ca9811bf",
+				"dweb:/ipfs/QmThsBHCTBJfQgespK9GPcuZ5nMMZM8HMWWL7cNY1K2J9u"
+			]
+		},
+		"contracts/contracts-interaction/ICalculadora.sol": {
+			"keccak256": "0x5cce7b91dd9ad33882321cd715a5a80a875b8a7b7c4718f703df58afb6352303",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c97219e4db9790f4407b82b376b3cb05379fd67186fdef6a61571397b043d353",
+				"dweb:/ipfs/QmcDMDyVkoRjkcdDrQFAJmxcCYpfcEvtNo8521FdPgktEp"
+			]
+		}
+	},
+	"version": 1
+}

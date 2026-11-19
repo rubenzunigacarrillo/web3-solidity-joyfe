@@ -1,0 +1,18 @@
+{
+  "contracts@0.4.0/ContractA.sol": ".deps/npm/contracts@0.4.0/ContractA.sol",
+  "contracts@0.4.0/contracts-interaction/ContractA.sol": ".deps/npm/contracts@0.4.0/contracts-interaction/ContractA.sol",
+  "contracts@0.4.0/contracts-interaction/c.sol": ".deps/npm/contracts@0.4.0/contracts-interaction/c.sol",
+  "contracts@0.4.0/contracts-interaction/cio.sol": ".deps/npm/contracts@0.4.0/contracts-interaction/cio.sol",
+  "contracts@0.4.0/contracts-interaction/ci.sol": ".deps/npm/contracts@0.4.0/contracts-interaction/ci.sol",
+  "contracts@0.4.0/contracts-interaction/co.sol": ".deps/npm/contracts@0.4.0/contracts-interaction/co.sol",
+  "contracts@0.4.0/contracts-interaction/con.sol": ".deps/npm/contracts@0.4.0/contracts-interaction/con.sol",
+  "contracts@0.4.0/contracts-interaction/cont.sol": ".deps/npm/contracts@0.4.0/contracts-interaction/cont.sol",
+  "contracts@0.4.0/contracts-interaction/contr.sol": ".deps/npm/contracts@0.4.0/contracts-interaction/contr.sol",
+  "contracts@0.4.0/contracts-interaction/contra.sol": ".deps/npm/contracts@0.4.0/contracts-interaction/contra.sol",
+  "contracts@0.4.0/contracts-interaction/contrac.sol": ".deps/npm/contracts@0.4.0/contracts-interaction/contrac.sol",
+  "contracts@0.4.0/contracts-interaction/contract.sol": ".deps/npm/contracts@0.4.0/contracts-interaction/contract.sol",
+  "contracts@0.4.0/contracts-interaction/contract-.sol": ".deps/npm/contracts@0.4.0/contracts-interaction/contract-.sol",
+  "contracts@0.4.0/contracts-interaction/IContractA.sol": ".deps/npm/contracts@0.4.0/contracts-interaction/IContractA.sol",
+  "contracts@0.4.0/contracts-interaction/contract-a.sol": ".deps/npm/contracts@0.4.0/contracts-interaction/contract-a.sol",
+  "contracts@0.4.0/contracts-interaction/contractA.sol": ".deps/npm/contracts@0.4.0/contracts-interaction/contractA.sol"
+}

@@ -15,14 +15,6 @@
       }
     }
   },
-  "contracts/calculadora.sol": {
-    "__sources__": {
-      "contracts/calculadora.sol": {
-        "content": "// SPDX-License-Identifier: UNLICENSED\r\n/*\r\n    CALCULADORA\r\n*/\r\n\r\npragma solidity ^0.8.0;\r\n\r\ncontract Calculadora {\r\n    uint256 private lastResult = 0;\r\n\r\n    function sum(uint256 a, uint256 b) public pure returns (uint256) {\r\n        // lastResult = a+b;\r\n        // return lastResult;\r\n        return a+b;\r\n    }\r\n    function substract(uint256 a, uint256 b) public pure returns (uint256) {\r\n        // lastResult = a-b;\r\n        // return lastResult;\r\n        return a-b;\r\n    }\r\n    function multiply(uint256 a, uint256 b) public pure returns (uint256) {\r\n        // lastResult = a*b;\r\n        // return lastResult;\r\n        return a*b;\r\n    }\r\n    function divide(uint256 a, uint256 b) public pure returns (uint256) {\r\n        // if(b==0) return 0;\r\n        require(b!=0, \"No puedes dividir entre 0.\");\r\n        return a/b;\r\n    }\r\n    \r\n}",
-        "file": "contracts/calculadora.sol"
-      }
-    }
-  },
   "contracts/taskBoard.sol": {
     "__sources__": {
       "contracts/taskBoard.sol": {
@@ -36,6 +28,129 @@
       "contracts/Donations.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.19;\r\n\r\ncontract ContratoDonaciones {\r\n    address public organizacionBeneficiaria;\r\n    // uint256 public totalDonado;\r\n    event DonacionRecibida(address indexed donante, uint256 donacion);\r\n    event FondosRetirados(uint256 donacion);\r\n\r\n    constructor(address _organizacion) {\r\n        organizacionBeneficiaria = _organizacion;\r\n    }\r\n\r\n    receive() external payable {\r\n        emit DonacionRecibida(msg.sender, msg.value);\r\n    }\r\n\r\n    function hacerDonacion() public payable {\r\n        require(msg.value > 0, \"La donacion debe ser mayor que cero\");\r\n        emit DonacionRecibida(msg.sender, msg.value);\r\n    }\r\n\r\n    function retirarFondos() public {\r\n        require(msg.sender == organizacionBeneficiaria, \"Solo la organizacion puede retirar fondos\");\r\n        // Realiza la transferencia de fondos a la organización\r\n        // payable(organizacionBeneficiaria).transfer(address(this).balance); // DEPRECATED\r\n        // TODO: retirar fondos\r\n        emit FondosRetirados(address(this).balance);\r\n    }\r\n\r\n}",
         "file": "contracts/Donations.sol"
+      }
+    }
+  },
+  "contracts/contracts-interaction/Icontract-a.sol": {
+    "__sources__": {}
+  },
+  "contracts/contracts-interaction/contract-b.sol": {
+    "./contract-a.sol": "contracts/contracts-interaction/contract-a.sol",
+    "__sources__": {
+      "contracts/contracts-interaction/contract-b.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\nimport \"./contract-a.sol\";\r\n\r\ncontract ContractB {\r\n    ContractA public contractA;\r\n\r\n    // Constructor que inicializa la dirección de ContractA\r\n    constructor(address _contractAAddress) {\r\n        contractA = ContractA(_contractAAddress);\r\n    }\r\n\r\n    // Función para interactuar con setValue en ContractA\r\n    function callSetValue(uint256 _value) external {\r\n        contractA.setValue(_value);\r\n    }\r\n\r\n    // Función para interactuar con getValue en ContractA\r\n    function callGetValue() external view returns (uint256) {\r\n        return contractA.getValue();\r\n    }\r\n}",
+        "file": "contracts/contracts-interaction/contract-b.sol"
+      },
+      "contracts/contracts-interaction/contract-a.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract ContractA {\r\n    uint256 public value;\r\n\r\n    // Función para establecer un valor\r\n    function setValue(uint256 _value) external {\r\n        value = _value;\r\n    }\r\n\r\n    // Función para obtener el valor\r\n    function getValue() external view returns (uint256) {\r\n        return value;\r\n    }\r\n}",
+        "file": "contracts/contracts-interaction/contract-a.sol"
+      }
+    }
+  },
+  "contracts/contracts-interaction/contract-a.sol": {
+    "__sources__": {
+      "contracts/contracts-interaction/contract-a.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract ContractA {\r\n    uint256 public value;\r\n\r\n    // Función para establecer un valor\r\n    function setValue(uint256 _value) external {\r\n        value = _value;\r\n    }\r\n\r\n    // Función para obtener el valor\r\n    function getValue() external view returns (uint256) {\r\n        return value;\r\n    }\r\n}",
+        "file": "contracts/contracts-interaction/contract-a.sol"
+      }
+    }
+  },
+  "contracts/contracts-interaction/IContractB.sol": {
+    "__sources__": {
+      "contracts/contracts-interaction/IContractB.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ninterface IContractA {\r\n    function setValue(uint256 _value) external;\r\n    function getValue() external view returns (uint256);\r\n}",
+        "file": "contracts/contracts-interaction/IContractB.sol"
+      }
+    }
+  },
+  "contracts/calculadora.sol": {
+    "__sources__": {
+      "contracts/calculadora.sol": {
+        "content": "// SPDX-License-Identifier: UNLICENSED\r\n/*\r\n    CALCULADORA\r\n*/\r\n\r\npragma solidity ^0.8.0;\r\n\r\ncontract Calculadora {\r\n    uint256 private lastResult = 0;\r\n\r\n    function sum(uint256 a, uint256 b) public pure returns (uint256) {\r\n        // lastResult = a+b;\r\n        // return lastResult;\r\n        return a+b;\r\n    }\r\n    function substract(uint256 a, uint256 b) public pure returns (uint256) {\r\n        // lastResult = a-b;\r\n        // return lastResult;\r\n        return a-b;\r\n    }\r\n    function multiply(uint256 a, uint256 b) public pure returns (uint256) {\r\n        // lastResult = a*b;\r\n        // return lastResult;\r\n        return a*b;\r\n    }\r\n    function divide(uint256 a, uint256 b) public pure returns (uint256) {\r\n        // if(b==0) return 0;\r\n        require(b!=0, \"No puedes dividir entre 0.\");\r\n        return a/b;\r\n    }\r\n    \r\n}",
+        "file": "contracts/calculadora.sol"
+      }
+    }
+  },
+  "contracts/calculadora1.sol": {
+    "__sources__": {
+      "contracts/calculadora1.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\n/**\r\n * @title CalculadoraSinEstado\r\n * @dev Smart contract que realiza operaciones matemáticas básicas sin almacenar estado.\r\n * Todas las funciones son 'pure' para garantizar que no leen ni modifican la blockchain.\r\n */\r\ncontract Calculadora {\r\n\r\n    // Suma dos números enteros sin signo\r\n    function sumar(uint256 a, uint256 b) public pure returns (uint256) {\r\n        return a + b;\r\n    }\r\n\r\n    // Resta b de a (revierte automáticamente si b > a por underflow en Solidity ^0.8.0)\r\n    function restar(uint256 a, uint256 b) public pure returns (uint256) {\r\n        require(a >= b, \"Error: El resultado no puede ser negativo\");\r\n        return a - b;\r\n    }\r\n\r\n    // Multiplica dos números\r\n    function multiplicar(uint256 a, uint256 b) public pure returns (uint256) {\r\n        return a * b;\r\n    }\r\n\r\n    // Divide a entre b (división entera)\r\n    function dividir(uint256 a, uint256 b) public pure returns (uint256) {\r\n        require(b > 0, \"Error: Division por cero no permitida\");\r\n        return a / b;\r\n    }\r\n\r\n    // Devuelve el residuo (módulo) de dividir a entre b\r\n    function modulo(uint256 a, uint256 b) public pure returns (uint256) {\r\n        require(b > 0, \"Error: Modulo por cero no permitido\");\r\n        return a % b;\r\n    }\r\n\r\n    // Calcula la potencia (base^exponente)\r\n    function potencia(uint256 base, uint256 exponente) public pure returns (uint256) {\r\n        return base ** exponente;\r\n    }\r\n}\r\n",
+        "file": "contracts/calculadora1.sol"
+      }
+    }
+  },
+  "contracts/contracts-interaction/calculadora1.sol": {
+    "__sources__": {
+      "contracts/contracts-interaction/calculadora1.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\n/**\r\n * @title CalculadoraSinEstado\r\n * @dev Smart contract que realiza operaciones matemáticas básicas sin almacenar estado.\r\n * Todas las funciones son 'pure' para garantizar que no leen ni modifican la blockchain.\r\n */\r\ncontract Calculadora {\r\n\r\n    // Suma dos números enteros sin signo\r\n    function sumar(uint256 a, uint256 b) public pure returns (uint256) {\r\n        return a + b;\r\n    }\r\n\r\n    // Resta b de a (revierte automáticamente si b > a por underflow en Solidity ^0.8.0)\r\n    function restar(uint256 a, uint256 b) public pure returns (uint256) {\r\n        require(a >= b, \"Error: El resultado no puede ser negativo\");\r\n        return a - b;\r\n    }\r\n\r\n    // Multiplica dos números\r\n    function multiplicar(uint256 a, uint256 b) public pure returns (uint256) {\r\n        return a * b;\r\n    }\r\n\r\n    // Divide a entre b (división entera)\r\n    function dividir(uint256 a, uint256 b) public pure returns (uint256) {\r\n        require(b > 0, \"Error: Division por cero no permitida\");\r\n        return a / b;\r\n    }\r\n\r\n    // Devuelve el residuo (módulo) de dividir a entre b\r\n    function modulo(uint256 a, uint256 b) public pure returns (uint256) {\r\n        require(b > 0, \"Error: Modulo por cero no permitido\");\r\n        return a % b;\r\n    }\r\n\r\n    // Calcula la potencia (base^exponente)\r\n    function potencia(uint256 base, uint256 exponente) public pure returns (uint256) {\r\n        return base ** exponente;\r\n    }\r\n}\r\n",
+        "file": "contracts/contracts-interaction/calculadora1.sol"
+      }
+    }
+  },
+  "contracts/contracts-interaction/calculator.sol": {
+    "__sources__": {
+      "contracts/contracts-interaction/calculator.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\n/**\r\n * @title CalculadoraSinEstado\r\n * @dev Smart contract que realiza operaciones matemáticas básicas sin almacenar estado.\r\n * Todas las funciones son 'pure' para garantizar que no leen ni modifican la blockchain.\r\n */\r\ncontract Calculadora {\r\n\r\n    // Suma dos números enteros sin signo\r\n    function sumar(uint256 a, uint256 b) public pure returns (uint256) {\r\n        return a + b;\r\n    }\r\n\r\n    // Resta b de a (revierte automáticamente si b > a por underflow en Solidity ^0.8.0)\r\n    function restar(uint256 a, uint256 b) public pure returns (uint256) {\r\n        require(a >= b, \"Error: El resultado no puede ser negativo\");\r\n        return a - b;\r\n    }\r\n\r\n    // Multiplica dos números\r\n    function multiplicar(uint256 a, uint256 b) public pure returns (uint256) {\r\n        return a * b;\r\n    }\r\n\r\n    // Divide a entre b (división entera)\r\n    function dividir(uint256 a, uint256 b) public pure returns (uint256) {\r\n        require(b > 0, \"Error: Division por cero no permitida\");\r\n        return a / b;\r\n    }\r\n\r\n    // Devuelve el residuo (módulo) de dividir a entre b\r\n    function modulo(uint256 a, uint256 b) public pure returns (uint256) {\r\n        require(b > 0, \"Error: Modulo por cero no permitido\");\r\n        return a % b;\r\n    }\r\n\r\n    // Calcula la potencia (base^exponente)\r\n    function potencia(uint256 base, uint256 exponente) public pure returns (uint256) {\r\n        return base ** exponente;\r\n    }\r\n}\r\n",
+        "file": "contracts/contracts-interaction/calculator.sol"
+      }
+    }
+  },
+  "contracts/contracts-interaction/Calculadora.sol": {
+    "__sources__": {
+      "contracts/contracts-interaction/Calculadora.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\n/**\r\n * @title CalculadoraSinEstado\r\n * @dev Smart contract que realiza operaciones matemáticas básicas sin almacenar estado.\r\n * Todas las funciones son 'pure' para garantizar que no leen ni modifican la blockchain.\r\n */\r\ncontract Calculadora {\r\n\r\n    // Suma dos números enteros sin signo\r\n    function sumar(uint256 a, uint256 b) public pure returns (uint256) {\r\n        return a + b;\r\n    }\r\n\r\n    // Resta b de a (revierte automáticamente si b > a por underflow en Solidity ^0.8.0)\r\n    function restar(uint256 a, uint256 b) public pure returns (uint256) {\r\n        require(a >= b, \"Error: El resultado no puede ser negativo\");\r\n        return a - b;\r\n    }\r\n\r\n    // Multiplica dos números\r\n    function multiplicar(uint256 a, uint256 b) public pure returns (uint256) {\r\n        return a * b;\r\n    }\r\n\r\n    // Divide a entre b (división entera)\r\n    function dividir(uint256 a, uint256 b) public pure returns (uint256) {\r\n        require(b > 0, \"Error: Division por cero no permitida\");\r\n        return a / b;\r\n    }\r\n\r\n    // Devuelve el residuo (módulo) de dividir a entre b\r\n    function modulo(uint256 a, uint256 b) public pure returns (uint256) {\r\n        require(b > 0, \"Error: Modulo por cero no permitido\");\r\n        return a % b;\r\n    }\r\n\r\n    // Calcula la potencia (base^exponente)\r\n    function potencia(uint256 base, uint256 exponente) public pure returns (uint256) {\r\n        return base ** exponente;\r\n    }\r\n}\r\n",
+        "file": "contracts/contracts-interaction/Calculadora.sol"
+      }
+    }
+  },
+  "contracts/contracts-interaction/ClienteCalculadora.sol": {
+    "./ICalculadora.sol": "contracts/contracts-interaction/ICalculadora.sol",
+    "__sources__": {
+      "contracts/contracts-interaction/ClienteCalculadora.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\nimport \"./ICalculadora.sol\";\r\n\r\ncontract ClienteCalculadora {\r\n    function calcularTotal(address direccionCalculadora, uint256 x, uint256 y) external pure returns (uint256) {\r\n        return ICalculadora(direccionCalculadora).sumar(x, y);\r\n    }\r\n}",
+        "file": "contracts/contracts-interaction/ClienteCalculadora.sol"
+      },
+      "contracts/contracts-interaction/ICalculadora.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\n/**\r\n * @title ICalculadora\r\n * @dev Interfaz para interactuar con el contrato Calculadora desde otros smart contracts.\r\n */\r\ninterface ICalculadora {\r\n    function sumar(uint256 a, uint256 b) external pure returns (uint256);\r\n    // function restar(uint256 a, uint256 b) external pure returns (uint256);\r\n    // function multiplicar(uint256 a, uint256 b) external pure returns (uint256);\r\n    // function dividir(uint256 a, uint256 b) external pure returns (uint256);\r\n    // function modulo(uint256 a, uint256 b) external pure returns (uint256);\r\n    // function potencia(uint256 base, uint256 exponente) external pure returns (uint256);\r\n}",
+        "file": "contracts/contracts-interaction/ICalculadora.sol"
+      }
+    }
+  },
+  "contracts/contracts-interaction/ContractB2.sol": {
+    "__sources__": {
+      "contracts/contracts-interaction/ContractB2.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ncontract ContractB {\r\n    address public contractAAddress;\r\n\r\n    // Constructor que inicializa la dirección de ContractA\r\n    constructor(address _contractAAddress) {\r\n        contractAAddress = _contractAAddress;\r\n    }\r\n\r\n    // Ejemplo de uso de una ABI codificada manualmente para llamar a setValue (Application Binary Interface)\r\n    function callSetValue(uint256 _value) external {\r\n        (bool success, ) = contractAAddress.call(\r\n            abi.encodeWithSignature(\"setValue(uint256)\", _value)\r\n        );\r\n        require(success, \"Call failed\");\r\n    }\r\n\r\n    // Ejemplo de uso de una ABI codificada manualmente para llamar a getValue\r\n    function callGetValue() external view returns (uint256) {\r\n        (bool success, bytes memory data) = contractAAddress.staticcall(\r\n            abi.encodeWithSignature(\"getValue()\")\r\n        );\r\n        require(success, \"Call failed\");\r\n        return abi.decode(data, (uint256));\r\n    }\r\n\r\n    \r\n    function calcularTotal(address calculatorDir, uint256 x, uint256 y) external view returns (uint256) {\r\n        (bool success, bytes memory data) = calculatorDir.staticcall(\r\n            abi.encodeWithSignature(\"sumar(uint2456, uint256)\", x, y)\r\n        );\r\n        require(success, \"Call failed\");\r\n        return abi.decode(data, (uint256));\r\n    }\r\n}\r\n",
+        "file": "contracts/contracts-interaction/ContractB2.sol"
+      }
+    }
+  },
+  "contracts/contracts-interaction/ContractB.sol": {
+    "./ContractA.sol": "contracts/contracts-interaction/ContractA.sol",
+    "__sources__": {
+      "contracts/contracts-interaction/ContractB.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\nimport \"./ContractA.sol\";\r\n\r\ncontract ContractB {\r\n    ContractA public contractA;\r\n\r\n    // Constructor que inicializa la dirección de ContractA\r\n    constructor(address _contractAAddress) {\r\n        contractA = ContractA(_contractAAddress);\r\n    }\r\n\r\n    // Función para interactuar con setValue en ContractA\r\n    function callSetValue(uint256 _value) external {\r\n        contractA.setValue(_value);\r\n    }\r\n\r\n    // Función para interactuar con getValue en ContractA\r\n    function callGetValue() external view returns (uint256) {\r\n        return contractA.getValue();\r\n    }\r\n}",
+        "file": "contracts/contracts-interaction/ContractB.sol"
+      },
+      "contracts/contracts-interaction/ContractA.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\nimport \"./IContractA.sol\";\r\n\r\ncontract ContractA {\r\n    uint256 public value;\r\n\r\n    // Función para establecer un valor\r\n    function setValue(uint256 _value) external {\r\n        value = _value;\r\n    }\r\n\r\n    // Función para obtener el valor\r\n    function getValue() external view returns (uint256) {\r\n        return value;\r\n    }\r\n}",
+        "file": "contracts/contracts-interaction/ContractA.sol"
+      },
+      "contracts/contracts-interaction/IContractA.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ninterface IContractA {\r\n    function setValue(uint256 _value) external;\r\n    function getValue() external view returns (uint256);\r\n}",
+        "file": "contracts/contracts-interaction/IContractA.sol"
+      }
+    }
+  },
+  "contracts/contracts-interaction/ContractA.sol": {
+    "./IContractA.sol": "contracts/contracts-interaction/IContractA.sol",
+    "__sources__": {
+      "contracts/contracts-interaction/ContractA.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\nimport \"./IContractA.sol\";\r\n\r\ncontract ContractA {\r\n    uint256 public value;\r\n\r\n    // Función para establecer un valor\r\n    function setValue(uint256 _value) external {\r\n        value = _value;\r\n    }\r\n\r\n    // Función para obtener el valor\r\n    function getValue() external view returns (uint256) {\r\n        return value;\r\n    }\r\n}",
+        "file": "contracts/contracts-interaction/ContractA.sol"
+      },
+      "contracts/contracts-interaction/IContractA.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.0;\r\n\r\ninterface IContractA {\r\n    function setValue(uint256 _value) external;\r\n    function getValue() external view returns (uint256);\r\n}",
+        "file": "contracts/contracts-interaction/IContractA.sol"
       }
     }
   }

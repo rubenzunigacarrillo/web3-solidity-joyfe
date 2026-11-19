@@ -1,0 +1,93 @@
+{
+	"compiler": {
+		"version": "0.8.34+commit.80d5c536"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "getValue",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"name": "setValue",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "value",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/contracts-interaction/ContractA.sol": "ContractA"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/contracts-interaction/ContractA.sol": {
+			"keccak256": "0xff503d007fca47e7144752070a2f7108a1e9540b7b0d10e764135524d0718eb3",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://95e2d84a26337988bb541bc3d2b503198e56119266d36b87aece42cf1cd940a3",
+				"dweb:/ipfs/QmWzdpQ7ZmMqHKoNFGCffPcrxgVLSBCoBz11fwUjVkDgPm"
+			]
+		},
+		"contracts/contracts-interaction/IContractA.sol": {
+			"keccak256": "0xc1d8ea64699acb27ceb7821ae37d026ce885427fe6b7505bbfb1a4133309cf08",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://49ddaddbd51d275b8fb1291d35dcf83fee511882a07c6922a6e6c503e33ed93e",
+				"dweb:/ipfs/QmUkcgVwjCDVEcfZTwvJEqXVWGaMfciHRVGBSVCgyBL6o7"
+			]
+		}
+	},
+	"version": 1
+}
